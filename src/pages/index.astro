@@ -2,6 +2,7 @@
 import ContactForm from '../components/ContactForm';
 import ImageCarousel from '../components/ImageCarousel';
 import Layout from '../layouts/Layout.astro';
+import AircraftDetails from '../components/AircraftDetails.astro';
 
 const carouselImages = [
 	{
@@ -49,6 +50,10 @@ const carouselImages = [
 
 		<section class="gallery-card">
 			<ImageCarousel images={carouselImages} client:visible />
+		</section>
+
+		<section class="details-card">
+			<AircraftDetails />
 		</section>
 
 		<section class="contact-card" id="contact">
