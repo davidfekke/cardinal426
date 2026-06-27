@@ -1,12 +1,21 @@
+## Purpose
+
+This website will be for selling partnerships into a 1976 Cessna Cardinal 177RG. Right now I am intending for this website to have just one page with a contact form. I am also planning on adding an image carousel.
+
 ## Development
 
-When starting the dev server, use background mode:
+When starting the dev server, run it in a separate terminal or background it with your shell:
 
 ```
-astro dev --background
+astro dev &
 ```
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+
+## Image Carousel
+
+I would like to use Astro's islands feature and React to host the image carousel.
+
+If the React integration is not already present, install it with `npx astro add react` before implementing the carousel component.
 
 ## Documentation
 

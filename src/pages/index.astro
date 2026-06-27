@@ -1,11 +1,146 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import ContactForm from '../components/ContactForm';
+import ImageCarousel from '../components/ImageCarousel';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const carouselImages = [
+	{
+		src: '/images/cardinal-tampa.jpeg',
+		alt: 'Cessna Cardinal parked on a sunlit ramp in Tampa, Florida',
+		caption: 'A fast, efficient retractable platform for personal and business travel.'
+	},
+	{
+		src: '/images/cardinal-in-hangar.jpeg',
+		alt: 'Cardinal 426 staged in a hangar before departure',
+		caption: 'Kept  in a hangar at Craig Airport in Jacksonville, Florida, with easy access to the ramp and taxiways.'
+	},
+	{
+		src: '/images/cardinal-after-wash.jpeg',
+		alt: 'Cessna Cardinal after being washed',
+		caption: 'Structured shared ownership with clear expectations and operating discipline.'
+	},
+	{
+		src: '/images/ramp-FHB.jpeg',
+		alt: 'Cessna Cardinal after some avionics work, parked on a ramp in Florida',
+		caption: 'Parked on a ramp in Florida, ready for the next flight.'
+	},
+	{
+		src: '/images/instrument-panel.jpeg',
+		alt: 'Cessna Cardinal cockpit instrument panel and controls',
+		caption: 'A capable IFR-focused panel with room for personalized upgrades.'
+	}
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Cardinal 426 | 1976 Cessna 177RG Partnership"
+	description="Explore partnership opportunities in a 1976 Cessna Cardinal 177RG and request details directly from the owners."
+>
+	<main class="page-shell">
+		<section class="hero-card">
+			<p class="hero-kicker">Cardinal Partnership</p>
+			<h1>Own The Mission, Not Just The Airplane</h1>
+			<p class="hero-copy">
+				We are opening a 1/4 share partnership in a 1976 Cessna Cardinal 177RG. The goal is
+				simple: reliable flying, transparent operating costs, and a partnership built around
+				professional standards.
+			</p>
+		</section>
+
+		<section class="gallery-card">
+			<ImageCarousel images={carouselImages} client:visible />
+		</section>
+
+		<section class="contact-card" id="contact">
+			<ContactForm client:load />
+		</section>
+	</main>
 </Layout>
+
+<style>
+	:global(body) {
+		background:
+			radial-gradient(circle at 15% 8%, rgba(219, 151, 46, 0.2), transparent 38%),
+			radial-gradient(circle at 85% 2%, rgba(72, 127, 173, 0.2), transparent 40%),
+			linear-gradient(180deg, #091524, #132437 56%, #0f1f2d);
+		color: #f5f0e1;
+		font-family: 'Sora', 'Trebuchet MS', sans-serif;
+	}
+
+	.page-shell {
+		box-sizing: border-box;
+		display: grid;
+		gap: 1.6rem;
+		margin: 0 auto;
+		max-width: 1080px;
+		min-height: 100%;
+		padding: clamp(1rem, 4vw, 2.4rem);
+	}
+
+	.hero-card {
+		animation: rise-in 480ms ease forwards;
+		background: linear-gradient(140deg, rgba(10, 31, 53, 0.85), rgba(12, 26, 40, 0.95));
+		border: 1px solid rgba(99, 141, 179, 0.4);
+		border-radius: 20px;
+		box-shadow: 0 18px 48px rgba(3, 10, 18, 0.35);
+		padding: clamp(1.25rem, 3vw, 2rem);
+	}
+
+	.hero-kicker {
+		color: #f1bb53;
+		font-size: 0.82rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		margin: 0;
+		text-transform: uppercase;
+	}
+
+	h1 {
+		font-family: 'Fraunces', Georgia, serif;
+		font-size: clamp(2rem, 5vw, 3.5rem);
+		font-weight: 500;
+		line-height: 1.03;
+		margin: 0.65rem 0;
+		text-wrap: balance;
+	}
+
+	.hero-copy {
+		color: #d8e2ed;
+		font-size: clamp(1rem, 2vw, 1.2rem);
+		line-height: 1.62;
+		margin: 0;
+		max-width: 65ch;
+	}
+
+	.gallery-card {
+		animation: rise-in 640ms ease forwards;
+	}
+
+	.contact-card {
+		animation: rise-in 780ms ease forwards;
+		padding-bottom: 1.4rem;
+	}
+
+	@keyframes rise-in {
+		from {
+			opacity: 0;
+			transform: translateY(18px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 720px) {
+		.page-shell {
+			gap: 1.1rem;
+			padding: 1rem 0.85rem 1.3rem;
+		}
+
+		h1 {
+			font-size: clamp(1.65rem, 9vw, 2.4rem);
+		}
+	}
+</style>
